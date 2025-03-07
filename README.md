@@ -1,5 +1,3 @@
-# lyricsflip_mobile
-
 # LyricFlip Mobile App
 
 ## About
