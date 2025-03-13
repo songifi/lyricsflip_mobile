@@ -1,6 +1,5 @@
 # LyricFlip Mobile App
 
-## About
 LyricFlip is an interactive on-chain card game where players test their music knowledge by guessing song titles or artists from partial lyrics. Featuring categories by genre and decade, players can wager tokens and compete for bragging rights. Powered by Starknet, LyricFlip blends entertainment, blockchain, and nostalgia in a fun, rewarding way!
 
 ## Tech Stack
