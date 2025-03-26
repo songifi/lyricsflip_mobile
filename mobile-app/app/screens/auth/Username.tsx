@@ -21,7 +21,7 @@ const Username = () => {
 
       <View style={{ flex: 1, margin: "auto", width: "90%" }}>
         <Button
-          title={"Connect Wallet"}
+          title={"Create Username"}
           //  onPress={() => null}
           onPress={() => null}
         />
