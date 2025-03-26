@@ -12,9 +12,9 @@ export default function Index() {
   useEffect(() => {
     const fetchOnboardingStatus = async () => {
       try {
-        // TEMPORARY: Clear onboarding status for testing
-        await AsyncStorage.removeItem('hasSeenOnboarding');
-        const hasSeenOnboarding = await AsyncStorage.getItem("hasSeenOnboarding");
+        const hasSeenOnboarding = await AsyncStorage.getItem(
+          "hasSeenOnboarding"
+        );
         setShowOnboarding(hasSeenOnboarding !== "true");
       } catch (error) {
         console.error("Error reading AsyncStorage:", error);
