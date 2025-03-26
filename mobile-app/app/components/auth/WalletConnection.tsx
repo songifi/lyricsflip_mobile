@@ -38,7 +38,7 @@ const WalletConnection = () => {
 
             <Button
                 title={'Connect Wallet'}
-                onPress={() => router.push('/(drawer)/(tabs)')}
+                onPress={() => router.push('/screens/auth/Username')}
             />
         </View>
     );
