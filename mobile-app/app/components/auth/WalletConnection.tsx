@@ -2,11 +2,18 @@ import { Fonts } from "@/constants/Fonts";
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import Button from "../form/Button";
+import { router, useRouter } from "expo-router";
 const argent = require("@/assets/images/argent.png");
 const okx = require("@/assets/images/okx.png");
 const brave = require("@/assets/images/brave.png");
 
-const WalletConnection = () => {
+interface CustomWalletConnectionProps {
+  href?: any;
+}
+
+const WalletConnection: React.FC<CustomWalletConnectionProps> = ({ href }) => {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>
@@ -34,7 +41,11 @@ const WalletConnection = () => {
         <View style={styles.dividerLine} />
       </View>
 
-      <Button title={"Connect Wallet"} onPress={() => null} />
+      <Button
+        title={"Connect Wallet"}
+        //  onPress={() => null}
+        onPress={() => router.push(href)}
+      />
     </View>
   );
 };

@@ -33,7 +33,8 @@ export default function Index() {
       {showOnboarding ? (
         <OnboardingScreen />
       ) : (
-        <Redirect href="/(drawer)/(tabs)" />
+        <Redirect href=// "/(drawer)/(tabs)"
+        "/screens/auth/CreateAccount" />
       )}
     </GestureHandlerRootView>
   );
