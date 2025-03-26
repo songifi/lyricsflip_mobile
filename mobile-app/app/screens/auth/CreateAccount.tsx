@@ -10,8 +10,7 @@ const CreateAccount = () => {
         title="CREATE ACCOUNT"
         subtitle="Create an account to test your lyrical prowess"
       />
-      <WalletConnection href={"/screens/auth/Username"} />
-      <View style={{ flex: 1, margin: "auto", width: "90%" }}></View>
+      <WalletConnection />
     </View>
   );
 };
