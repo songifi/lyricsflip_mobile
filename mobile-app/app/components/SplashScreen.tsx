@@ -3,25 +3,29 @@ import { View, Text, StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 import { Fonts } from "@/constants/Fonts";
+import { StatusBar } from "expo-status-bar";
 
 const SplashScreen = () => {
   return (
-    <LinearGradient
-      colors={[Colors.light.gradient, Colors.light.primary]}
-      style={styles.container}
-    >
-      <View style={styles.titleContainer}>
-        <Text style={styles.splashTitle}>
-          Lyric
-          <Text style={styles.splashFlip}>Flip</Text>
-        </Text>
-      </View>
-      <View style={styles.bottomContainer}>
-        <Text style={styles.splashSubtitle}>
-          Have fun testing your lyrical knowledge 🎵
-        </Text>
-      </View>
-    </LinearGradient>
+    <>
+      <StatusBar style="light" />
+      <LinearGradient
+        colors={[Colors.light.gradient, Colors.light.primary]}
+        style={styles.container}
+      >
+        <View style={styles.titleContainer}>
+          <Text style={styles.splashTitle}>
+            Lyric
+            <Text style={styles.splashFlip}>Flip</Text>
+          </Text>
+        </View>
+        <View style={styles.bottomContainer}>
+          <Text style={styles.splashSubtitle}>
+            Have fun testing your lyrical knowledge 
+          </Text>
+        </View>
+      </LinearGradient>
+    </>
   );
 };
 
