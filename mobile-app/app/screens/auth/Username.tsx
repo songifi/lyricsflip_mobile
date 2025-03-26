@@ -3,10 +3,11 @@ import { View } from "react-native";
 import Header from "@/app/components/auth/Header";
 import WalletConnection from "@/app/components/auth/WalletConnection";
 import Button from "@/app/components/form/Button";
-import { router } from "expo-router";
+import { RelativePathString, router } from "expo-router";
 import Input from "@/app/components/form/Input";
 
 const Username = () => {
+  const path = "/(drawer)/(tabs)/" as RelativePathString;
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <Header
@@ -20,11 +21,7 @@ const Username = () => {
       />
 
       <View style={{ flex: 1, margin: "auto", width: "90%" }}>
-        <Button
-          title={"Create Username"}
-          //  onPress={() => null}
-          onPress={() => null}
-        />
+        <Button title={"Create Username"} onPress={() => router.push(path)} />
       </View>
     </View>
   );

@@ -11,27 +11,7 @@ import {
   type TextStyle,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
-interface CustomInputProps {
-  label: string;
-  placeholder?: string;
-  onBlur?: () => void;
-  isValid?: boolean;
-  validationMessage?: string;
-  showValidation?: boolean;
-  secureTextEntry?: boolean;
-  containerStyle?: ViewStyle;
-  labelStyle?: TextStyle;
-  inputStyle?: TextStyle;
-  validationStyle?: TextStyle;
-  autoCapitalize?: "none" | "sentences" | "words" | "characters";
-  keyboardType?:
-    | "default"
-    | "email-address"
-    | "numeric"
-    | "phone-pad"
-    | "number-pad";
-}
+import { CustomInputProps } from "@/app/types/all_types";
 
 const Input: React.FC<CustomInputProps> = ({
   label,
@@ -39,19 +19,35 @@ const Input: React.FC<CustomInputProps> = ({
   validationMessage = "",
   showValidation = false,
   secureTextEntry = false,
-  containerStyle,
-  labelStyle,
-  inputStyle,
-  validationStyle,
+  // containerStyle,
+  // labelStyle,
+  // inputStyle,
+  // validationStyle,
   autoCapitalize = "none",
   keyboardType = "default",
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   return (
-    <View style={[styles.container, containerStyle]}>
-      <Text style={[styles.label, labelStyle]}>{label}</Text>
+    <View
+      style={[
+        styles.container,
+        // containerStyle
+      ]}
+    >
+      <Text
+        style={[
+          styles.label,
+          //  labelStyle
+        ]}
+      >
+        {label}
+      </Text>
       <TextInput
-        style={[styles.input, inputStyle, isFocused && styles.inputFocused]}
+        style={[
+          styles.input,
+          // inputStyle,
+          isFocused && styles.inputFocused,
+        ]}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
         autoCapitalize={autoCapitalize}
@@ -61,7 +57,11 @@ const Input: React.FC<CustomInputProps> = ({
       <View style={styles.validationContainer}>
         <Ionicons name="checkmark-circle" size={20} color={"#4CAF50"} />
         <Text
-          style={[styles.validationText, { color: "#4CAF50" }, validationStyle]}
+          style={[
+            styles.validationText,
+            { color: "#4CAF50" },
+            // validationStyle
+          ]}
         >
           {validationMessage}
         </Text>
