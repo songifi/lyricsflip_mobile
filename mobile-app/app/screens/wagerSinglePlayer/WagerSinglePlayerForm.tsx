@@ -347,11 +347,11 @@ const styles = StyleSheet.create({
         padding: 12,
     },
     dropdownText: {
-        fontSize: 16,
+        fontSize: 12,
         fontFamily: Fonts.Inter,
     },
     placeholderText: {
-        fontSize: 16,
+        fontSize: 12,
         fontFamily: Fonts.Inter,
         color: '#888',
     },
@@ -360,7 +360,7 @@ const styles = StyleSheet.create({
         borderColor: '#DBE1E7',
         borderRadius: 8,
         padding: 12,
-        fontSize: 16,
+        fontSize: 12,
         fontFamily: Fonts.Inter,
         width: '100%',
     },
