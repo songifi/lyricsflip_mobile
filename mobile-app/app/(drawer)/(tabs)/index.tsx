@@ -49,6 +49,7 @@ const gameModes = [
       "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
     bgImage: require("@/assets/images/bg-2.png"),
     iconBgColor: "#DF7A16",
+    router: "null",
   },
   {
     icon: <Target size={18} color="white" />,
@@ -57,6 +58,7 @@ const gameModes = [
       "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
     bgImage: require("@/assets/images/bg-3.png"),
     iconBgColor: "#7D1D3F",
+    router: "null",
   },
 ];
 
@@ -102,6 +104,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+    marginBlock: 24,
   },
   scrollView: {
     flex: 1,

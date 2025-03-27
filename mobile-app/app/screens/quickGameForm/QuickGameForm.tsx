@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import {
   View,
@@ -8,15 +6,18 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  Modal,
 } from "react-native";
 import { AntDesign, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
 import { Fonts } from "@/constants/Fonts";
 import { useNavigation } from "expo-router";
-import CustomDropdown from "@/app/components/form/Dropdown";
 import Dropdown from "@/app/components/form/Dropdown";
+import Button from "@/app/components/form/Button";
+import Game from "@/components/Game";
+import GameModal from "@/components/GameModal";
 
-// Define dropdown options
+// Defining dropdown options
 const genreOptions = [
   { value: "rock", label: "Rock" },
   { value: "pop", label: "Pop" },
@@ -50,6 +51,32 @@ export default function QuickGameForm() {
   const [selectedGenre, setSelectedGenre] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [selectedDuration, setSelectedDuration] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+  const [points, setPoints] = useState(500);
+
+  const gameResult = {
+    isWinner: true,
+    prizeWon: {
+      crypto: 12000,
+      fiat: 120,
+      currency: "STRK",
+      fiatCurrency: "USD",
+    },
+    wagerAmount: {
+      crypto: 10000,
+      fiat: 100,
+      currency: "STRK",
+      fiatCurrency: "USD",
+    },
+    secondPlace: {
+      name: "theXaxxo",
+      points: 345,
+    },
+    thirdPlace: {
+      name: "theXaxxo",
+      points: 345,
+    },
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -115,9 +142,19 @@ export default function QuickGameForm() {
         </View>
 
         {/* Start Game Button */}
-        <TouchableOpacity style={styles.startButton}>
-          <Text style={styles.startButtonText}>Start Game</Text>
-        </TouchableOpacity>
+        <Button title="Start Game" onPress={() => setModalVisible(true)} />
+
+        {/* Pop-up For Game Won/Lost */}
+        <GameModal
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          points={points}
+          isWinner={gameResult.isWinner}
+          prizeWon={gameResult.prizeWon}
+          wagerAmount={gameResult.wagerAmount}
+          secondPlace={gameResult.secondPlace}
+          thirdPlace={gameResult.thirdPlace}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -194,28 +231,5 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: "#08090A",
     fontFamily: Fonts.Inter,
-  },
-  startButton: {
-    backgroundColor: Colors.light.primary,
-    borderRadius: 28,
-    paddingVertical: 16,
-    alignItems: "center",
-    marginBottom: 30,
-  },
-  startButtonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "600",
-    fontFamily: Fonts.Inter,
-  },
-  pageIndicator: {
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  indicatorDot: {
-    width: 40,
-    height: 4,
-    backgroundColor: "#000",
-    borderRadius: 2,
   },
 });

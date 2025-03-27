@@ -4,6 +4,10 @@ export interface ButtonProps {
   primary?: boolean;
   disabled?: boolean;
   isFullWidth?: boolean;
+  backgroundColor?: string;
+  borderColor?: string;
+  color?: string;
+  border?: string;
 }
 
 export interface HeaderProps {

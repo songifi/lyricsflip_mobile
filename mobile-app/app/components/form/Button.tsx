@@ -1,23 +1,30 @@
-import { Colors } from '@/constants/Colors';
-import { Fonts } from '@/constants/Fonts';
-import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { ButtonProps } from '@/app/types/all_types';
+import { Colors } from "@/constants/Colors";
+import { Fonts } from "@/constants/Fonts";
+import React from "react";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { ButtonProps } from "@/app/types/all_types";
 
-const Button: React.FC<ButtonProps> = ({ 
-  title, 
-  onPress, 
-  primary = true, 
-  disabled = false, 
-  isFullWidth = true
+const Button: React.FC<ButtonProps> = ({
+  title,
+  onPress,
+  primary = true,
+  disabled = false,
+  isFullWidth = true,
+  backgroundColor,
+  borderColor,
+  color,
+  border,
 }) => {
   return (
     <TouchableOpacity
+      className={`${border}`}
       style={[
         styles.button,
         primary ? styles.primaryButton : styles.secondaryButton,
         disabled && styles.disabledButton,
-        {width: isFullWidth ? '100%' : '50%'}
+        { width: isFullWidth ? "100%" : "50%" },
+        backgroundColor && { backgroundColor },
+        borderColor && { borderColor },
       ]}
       onPress={onPress}
       disabled={disabled}
@@ -26,7 +33,8 @@ const Button: React.FC<ButtonProps> = ({
         style={[
           styles.buttonText,
           primary ? styles.primaryButtonText : styles.secondaryButtonText,
-          disabled && styles.disabledButtonText
+          disabled && styles.disabledButtonText,
+          color && { color },
         ]}
       >
         {title}
@@ -37,35 +45,35 @@ const Button: React.FC<ButtonProps> = ({
 
 const styles = StyleSheet.create({
   button: {
-    width: 'auto',
+    width: "auto",
     height: 56,
     borderRadius: 28,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   primaryButton: {
     backgroundColor: Colors.light.primary,
   },
   secondaryButton: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     borderWidth: 2,
     borderColor: Colors.light.primary,
   },
   disabledButton: {
-    backgroundColor: 'rgba(165, 90, 243, 0.5)',
+    backgroundColor: "rgba(165, 90, 243, 0.5)",
   },
   buttonText: {
     fontSize: 16,
-    fontFamily: Fonts.Inter
+    fontFamily: Fonts.Inter,
   },
   primaryButtonText: {
-    color: 'white',
+    color: "white",
   },
   secondaryButtonText: {
     color: Colors.light.primary,
   },
   disabledButtonText: {
-    color: 'rgba(255, 255, 255, 0.5)',
+    color: "rgba(255, 255, 255, 0.5)",
   },
 });
 
