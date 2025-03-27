@@ -61,7 +61,6 @@ export default function GameCard({ lyric }: GameCardProps) {
             <NewBadgePopUp
                 isVisible={isModalVisible}
                 onClose={() => setModalVisible(false)}
-                onStartGame={showWagerSummary}
             />
             {/* <WagerSummaryModal
                 isVisible={isModalVisible}

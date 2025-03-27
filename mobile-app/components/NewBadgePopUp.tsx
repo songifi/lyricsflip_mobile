@@ -16,13 +16,11 @@ const { height } = Dimensions.get('window');
 interface NewBadgePopUpProps {
     isVisible: boolean;
     onClose: () => void;
-    onStartGame: () => void;
 }
 
 const NewBadgePopUp: React.FC<NewBadgePopUpProps> = ({
     isVisible,
     onClose,
-    onStartGame,
 }) => {
     return (
         <Modal
@@ -62,21 +60,15 @@ const NewBadgePopUp: React.FC<NewBadgePopUpProps> = ({
                         </View>
 
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity
-                                style={styles.cancelButton}
-                                onPress={onClose}
-                            >
+                            <TouchableOpacity style={styles.cancelButton}>
                                 <Text style={styles.cancelButtonText}>
-                                    Cancel
+                                    Share
                                 </Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity
-                                style={styles.startButton}
-                                onPress={onStartGame}
-                            >
+                            <TouchableOpacity style={styles.startButton}>
                                 <Text style={styles.startButtonText}>
-                                    Start Game
+                                    View Badge
                                 </Text>
                             </TouchableOpacity>
                         </View>
