@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View,
     ImageBackground,
@@ -11,12 +11,19 @@ import {
 import { RefreshCcw } from 'lucide-react-native';
 import Frame from '@/assets/images/Frame.svg';
 import { Fonts } from '@/constants/Fonts';
+import WagerSummaryModal from './WagerSummaryModal';
 
 interface GameCardProps {
     lyric: string;
 }
 
 export default function GameCard({ lyric }: GameCardProps) {
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const showWagerSummary = () => {
+        setModalVisible(true);
+    };
+
     return (
         <View style={styles.cardContainer}>
             <ImageBackground
@@ -29,7 +36,10 @@ export default function GameCard({ lyric }: GameCardProps) {
                     width: '100%',
                 }}
             >
-                <TouchableOpacity style={styles.refeshButton}>
+                <TouchableOpacity
+                    style={styles.refeshButton}
+                    onPress={() => setModalVisible(true)}
+                >
                     <RefreshCcw size={16} color="#70E3C7" />
                 </TouchableOpacity>
 
@@ -47,6 +57,11 @@ export default function GameCard({ lyric }: GameCardProps) {
                     </Text>
                 </View>
             </ImageBackground>
+            <WagerSummaryModal
+                isVisible={isModalVisible}
+                onClose={() => setModalVisible(false)}
+                onStartGame={showWagerSummary}
+            />
         </View>
     );
 }
