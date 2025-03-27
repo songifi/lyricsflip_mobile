@@ -1,0 +1,11 @@
+{
+    "GeistExtraLight": require("./assets/fonts/Geist-ExtraLight.ttf"),
+    "GeistLight": require("./assets/fonts/Geist-Light.ttf"),
+    "GeistMedium": require("./assets/fonts/Geist-Medium.ttf"),
+    "GeistRegular": require("./assets/fonts/Geist-Regular.ttf"),
+    "GeistSemiBold": require("./assets/fonts/Geist-SemiBold.ttf"),
+    "GeistThin": require("./assets/fonts/Geist-Thin.ttf"),
+    "GeistBlack": require("./assets/fonts/Geist-Black.ttf"),
+    "GeistBold": require("./assets/fonts/Geist-Bold.ttf"),
+    "GeistExtraBold": require("./assets/fonts/Geist-ExtraBold.ttf")
+  }

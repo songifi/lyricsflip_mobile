@@ -1,49 +1,69 @@
 {
-  "expo": {
-    "name": "mobile-app",
-    "slug": "mobile-app",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
-    },
-    "plugins": [
-      "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+    "expo": {
+        "name": "mobile-app",
+        "slug": "mobile-app",
+        "assets": ["./assets/fonts/"],
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/images/icon.png",
+        "scheme": "myapp",
+        "userInterfaceStyle": "automatic",
+        "newArchEnabled": true,
+        "ios": {
+            "supportsTablet": true
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/images/adaptive-icon.png",
+                "backgroundColor": "#ffffff"
+            }
+        },
+        "web": {
+            "bundler": "metro",
+            "output": "static",
+            "favicon": "./assets/images/favicon.png"
+        },
+        "plugins": [
+            "expo-router",
+            [
+                "expo-splash-screen",
+                {
+                    "image": "./assets/images/splash-icon.png",
+                    "imageWidth": 200,
+                    "resizeMode": "contain",
+                    "backgroundColor": "#ffffff"
+                }
+            ],
+            [
+                "expo-font",
+                {
+                    "fonts": [
+                        "./assets/fonts/Bricolage.ttf",
+                        "./assets/fonts/Inter.ttf",
+                        "./assets/fonts/Geist-ExtraLight.ttf",
+                        "./assets/fonts/Geist-Light.ttf",
+                        "./assets/fonts/Geist-Medium.ttf",
+                        "./assets/fonts/Geist-Regular.ttf",
+                        "./assets/fonts/Geist-SemiBold.ttf",
+                        "./assets/fonts/Geist-Thin.ttf",
+                        "./assets/fonts/Geist-Black.ttf",
+                        "./assets/fonts/Geist-Bold.ttf",
+                        "./assets/fonts/Geist-ExtraBold.ttf",
+                        "./assets/fonts/Satoshi-Black.otf",
+                        "./assets/fonts/Satoshi-Bold.otf",
+                        "./assets/fonts/Satoshi-BoldItalic.otf",
+                        "./assets/fonts/Satoshi-Italic.otf",
+                        "./assets/fonts/Satoshi-Light.otf",
+                        "./assets/fonts/Satoshi-LightItalic.otf",
+                        "./assets/fonts/Satoshi-Medium.otf",
+                        "./assets/fonts/Satoshi-MediumItalic.otf",
+                        "./assets/fonts/Satoshi-Regular.otf"
+                    ]
+                }
+            ]
+        ],
+        "experiments": {
+            "typedRoutes": true
         }
-      ],
-      [
-        "expo-font", {
-          "fonts": [
-            "./assets/fonts/Bricolage.ttf",
-            "./assets/fonts/Inter.ttf"
-          ]
-        }
-      ]
-    ],
-    "experiments": {
-      "typedRoutes": true
     }
-  }
 }
