@@ -12,6 +12,7 @@ import { RefreshCcw } from 'lucide-react-native';
 import Frame from '@/assets/images/Frame.svg';
 import { Fonts } from '@/constants/Fonts';
 import WagerSummaryModal from './WagerSummaryModal';
+import NewBadgePopUp from './NewBadgePopUp';
 
 interface GameCardProps {
     lyric: string;
@@ -57,11 +58,15 @@ export default function GameCard({ lyric }: GameCardProps) {
                     </Text>
                 </View>
             </ImageBackground>
-            <WagerSummaryModal
+            <NewBadgePopUp
+                isVisible={isModalVisible}
+                onClose={() => setModalVisible(false)}
+            />
+            {/* <WagerSummaryModal
                 isVisible={isModalVisible}
                 onClose={() => setModalVisible(false)}
                 onStartGame={showWagerSummary}
-            />
+            /> */}
         </View>
     );
 }
