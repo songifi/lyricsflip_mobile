@@ -76,7 +76,7 @@ const gameModes = [
             'Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.',
         bgImage: require('@/assets/images/bg-1.png'),
         iconBgColor: '#3F8AB6',
-        route: '',
+        route: '../../../screens/wagerSinglePlayer/WagerSinglePlayerForm',
     },
     {
         icon: <Handshake size={18} color="white" />,
