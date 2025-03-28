@@ -23,7 +23,6 @@ import { Colors } from "@/constants/Colors";
 import { RelativePathString, router } from "expo-router";
 import WagerCreatedModal from "@/components/WagerCreated";
 
-
 const gameModes = [
   {
     icon: <Zap size={18} color="white" />,
@@ -51,7 +50,7 @@ const gameModes = [
       "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
     bgImage: require("@/assets/images/bg-2.png"),
     iconBgColor: "#DF7A16",
-    route: "",
+    route: "../../../screens/wagerMultiPlayer/WagerMultiPlayerForm",
   },
   {
     icon: <Target size={18} color="white" />,
@@ -64,15 +63,8 @@ const gameModes = [
   },
 ];
 
-  const wagerAmount = {
-    crypto: 10000,
-    fiat: 100,
-    currency: "STRK",
-    fiatCurrency: "USD",
-  };
-
-
 export default function index() {
+  // const [isModalOpen, setIsModalOpen] = useState(true);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -88,7 +80,6 @@ export default function index() {
 
         <Text style={styles.sectionTitle}>CHOOSE YOUR PREFERRED GAME MODE</Text>
 
-
         {gameModes.map((mode, index) => (
           <ImageBackground
             key={index}
@@ -96,14 +87,14 @@ export default function index() {
             style={styles.gameModeBackground}
           >
             <GameModeCard
+              // onPress={() => {
+              //   if (mode.title === "Wager (Multi Player)") {
+              //     setWagerModal(true); // Show the modal for "Wager (Multi Player)"
+              //   } else {
+              //     router.push(mode.route as RelativePathString); // Navigate for other game modes
+              //   }
+              // }}
               onPress={() => router.push(mode.route as RelativePathString)}
-              onPress={() => {
-                if (mode.title === "Wager (Multi Player)") {
-                  setWagerModal(true); // Show the modal for "Wager (Multi Player)"
-                } else {
-                  router.push(mode.route as RelativePathString); // Navigate for other game modes
-                }
-              }}
               icon={mode.icon}
               title={mode.title}
               description={mode.description}
@@ -112,20 +103,6 @@ export default function index() {
           </ImageBackground>
         ))}
       </ScrollView>
-
-      <WagerCreatedModal
-        onPress={() => setWagerModal(true)}
-        visible={wagerModal}
-        onClose={() => setWagerModal(false)}
-        inviteCode={wagerChallenge.inviteCode}
-        gameMode={wagerChallenge.gameMode}
-        participants={wagerChallenge.participants}
-        wagerAmount={wagerChallenge.wagerAmount}
-        winAmount={wagerChallenge.winAmount}
-        instruction={wagerChallenge.instruction}
-        // onStartGame={handleStartGame}
-      />
-
     </SafeAreaView>
   );
 }

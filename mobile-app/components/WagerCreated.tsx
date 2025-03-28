@@ -149,13 +149,13 @@ WagerChallengeModalProps) {
           <View style={styles.buttonsContainer}>
             <Button
               title="Share Invite Code"
-              onPress={() => {}}
+              onPress={onPress}
               borderColor="#9747FF"
               backgroundColor="#FFFFFF"
               color="#9747FF"
               border="border"
             />
-            <Button title="Start Game" onPress={() => {}} />
+            <Button title="Start Game" onPress={onPress} />
           </View>
         </View>
       </SafeAreaView>
