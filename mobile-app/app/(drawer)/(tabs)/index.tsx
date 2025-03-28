@@ -23,46 +23,46 @@ import { Colors } from "@/constants/Colors";
 import { RelativePathString, router } from "expo-router";
 import WagerCreatedModal from "@/components/WagerCreated";
 
-export default function index() {
-  const gameModes = [
-    {
-      icon: <Zap size={18} color="white" />,
 
-      title: "Quick Game",
-      description:
-        "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-      bgImage: require("@/assets/images/bg.png"),
-      iconBgColor: "#9747FF",
-      route: "../../../screens/quickGame/QuickGameForm",
-    },
-    {
-      icon: <Drum size={18} color="white" />,
-      title: "Wager (Single Player)",
-      description:
-        "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-      bgImage: require("@/assets/images/bg-1.png"),
-      iconBgColor: "#3F8AB6",
-      route: "../../../screens/wagerSinglePlayer/WagerSinglePlayerForm",
-    },
-    {
-      icon: <Handshake size={18} color="white" />,
-      title: "Wager (Multi Player)",
-      description:
-        "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-      bgImage: require("@/assets/images/bg-2.png"),
-      iconBgColor: "#DF7A16",
-      route: "",
-    },
-    {
-      icon: <Target size={18} color="white" />,
-      title: "Join a Challenge",
-      description:
-        "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-      bgImage: require("@/assets/images/bg-3.png"),
-      iconBgColor: "#7D1D3F",
-      route: "",
-    },
-  ];
+const gameModes = [
+  {
+    icon: <Zap size={18} color="white" />,
+
+    title: "Quick Game",
+    description:
+      "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
+    bgImage: require("@/assets/images/bg.png"),
+    iconBgColor: "#9747FF",
+    route: "../../../screens/quickGame/QuickGameForm",
+  },
+  {
+    icon: <Drum size={18} color="white" />,
+    title: "Wager (Single Player)",
+    description:
+      "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
+    bgImage: require("@/assets/images/bg-1.png"),
+    iconBgColor: "#3F8AB6",
+    route: "../../../screens/wagerSinglePlayer/WagerSinglePlayerForm",
+  },
+  {
+    icon: <Handshake size={18} color="white" />,
+    title: "Wager (Multi Player)",
+    description:
+      "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
+    bgImage: require("@/assets/images/bg-2.png"),
+    iconBgColor: "#DF7A16",
+    route: "",
+  },
+  {
+    icon: <Target size={18} color="white" />,
+    title: "Join a Challenge",
+    description:
+      "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
+    bgImage: require("@/assets/images/bg-3.png"),
+    iconBgColor: "#7D1D3F",
+    route: "",
+  },
+];
 
   const wagerAmount = {
     crypto: 10000,
@@ -71,49 +71,8 @@ export default function index() {
     fiatCurrency: "USD",
   };
 
-  const wagerChallenge = {
-    inviteCode: "LF34567QW",
-    gameMode: "Wager (Multi Player)",
-    participants: 6,
-    wagerAmount: {
-      crypto: 10000,
-      fiat: 100,
-      currency: "STRK",
-      fiatCurrency: "USD",
-    },
-    winAmount: {
-      crypto: 60000,
-      fiat: 800,
-      currency: "STRK",
-      fiatCurrency: "USD",
-    },
-    instruction:
-      "A card displaying a lyric from a song will appear along with a list of possible answers. Your goal is to score the highest point amongst your challengers",
-  };
 
-  // const path = '/screens/quickGameForm/QuickGameForm' as RelativePathString;
-
-  const [timeLeft, setTimeLeft] = useState(3540); // Start at 59 seconds
-  const [wagerModal, setWagerModal] = useState(false);
-  const [points, setPoints] = useState(500);
-  const [modalVisible, setModalVisible] = useState(false);
-
-  // const handleStartGame = () => {
-  //   // Handle starting the game
-  //   console.log("Starting game...");
-  //   setModalVisible(false);
-  // };
-
-  const handleShareInvite = async () => {
-    try {
-      await Share.share({
-        message: `Join my music quiz challenge! Use invite code: ${wagerChallenge.inviteCode}`,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+export default function index() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -129,6 +88,7 @@ export default function index() {
 
         <Text style={styles.sectionTitle}>CHOOSE YOUR PREFERRED GAME MODE</Text>
 
+
         {gameModes.map((mode, index) => (
           <ImageBackground
             key={index}
@@ -136,6 +96,7 @@ export default function index() {
             style={styles.gameModeBackground}
           >
             <GameModeCard
+              onPress={() => router.push(mode.route as RelativePathString)}
               onPress={() => {
                 if (mode.title === "Wager (Multi Player)") {
                   setWagerModal(true); // Show the modal for "Wager (Multi Player)"
@@ -151,6 +112,7 @@ export default function index() {
           </ImageBackground>
         ))}
       </ScrollView>
+
       <WagerCreatedModal
         onPress={() => setWagerModal(true)}
         visible={wagerModal}
@@ -163,6 +125,7 @@ export default function index() {
         instruction={wagerChallenge.instruction}
         // onStartGame={handleStartGame}
       />
+
     </SafeAreaView>
   );
 }
