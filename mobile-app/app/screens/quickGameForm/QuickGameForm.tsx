@@ -6,7 +6,6 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
-  Modal,
 } from "react-native";
 import { AntDesign, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
@@ -14,7 +13,6 @@ import { Fonts } from "@/constants/Fonts";
 import { useNavigation } from "expo-router";
 import Dropdown from "@/app/components/form/Dropdown";
 import Button from "@/app/components/form/Button";
-import Game from "@/components/Game";
 import GameModal from "@/components/GameModal";
 
 // Defining dropdown options
