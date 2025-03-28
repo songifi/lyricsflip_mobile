@@ -22,7 +22,6 @@ import {
 import { Colors } from "@/constants/Colors";
 import { RelativePathString, router } from "expo-router";
 import WagerCreatedModal from "@/components/WagerCreated";
-// import WagerCreatedModal from "@/components/WagerCreated";
 
 export default function index() {
   const gameModes = [
