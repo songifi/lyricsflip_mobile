@@ -53,7 +53,7 @@ const Dropdown = ({
         onPress={() => !disabled && setModalVisible(true)}
         disabled={disabled}
       >
-        <Text style={styles.dropdownButtonText}>{""}</Text>
+        <Text style={styles.dropdownButtonText}>{value}</Text>
         <Ionicons name="caret-down" size={20} color="#B3B3B3" />
       </TouchableOpacity>
 

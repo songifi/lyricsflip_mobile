@@ -59,7 +59,7 @@ const gameModes = [
       "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
     bgImage: require("@/assets/images/bg-3.png"),
     iconBgColor: "#7D1D3F",
-    route: "",
+    route: "/screens/joinChallenge/JoinAchallenge",
   },
 ];
 

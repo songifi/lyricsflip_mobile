@@ -1,4 +1,5 @@
 import {
+  Animated,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -6,9 +7,13 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { router, useNavigation, RelativePathString } from "expo-router";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
 import { Fonts } from "@/constants/Fonts";
 import Dropdown from "@/app/components/form/Dropdown";
@@ -25,41 +30,25 @@ export default function WagerMultiPlayerForm() {
   const [selectedNumberOfPlayer, setSelectedNumberOfPlayer] = useState("");
   const [selectedWagerAmount, setSelectedWagerAmount] = useState("");
   const [wagerModal, setWagerModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  //   const gameResult = {
-  //     isWinner: true,
-  //     prizeWon: {
-  //       crypto: 12000,
-  //       fiat: 120,
-  //       currency: "STRK",
-  //       fiatCurrency: "USD",
-  //     },
-  //     wagerAmount: {
-  //       crypto: 10000,
-  //       fiat: 100,
-  //       currency: "STRK",
-  //       fiatCurrency: "USD",
-  //     },
-  //     secondPlace: {
-  //       name: "theXaxxo",
-  //       points: 345,
-  //     },
-  //     thirdPlace: {
-  //       name: "theXaxxo",
-  //       points: 345,
-  //     },
-  //   };
+  const spinValue = useRef(new Animated.Value(0)).current;
 
-  //   const wagerChallenge = {
-  //     visible: true,
-  //     inviteCode: "LF34567QW",
-  //     gameMode: "Wager (Multi Player)",
-  //     participants: 6,
-  //     crypto: 10000,
-  //     fiat: 100,
-  //     currency: "STRK",
-  //     fiatCurrency: "USD",
-  //   };
+  useEffect(() => {
+    Animated.loop(
+      Animated.timing(spinValue, {
+        toValue: 1,
+        duration: 2000, // Rotation duration (2 seconds)
+        useNativeDriver: true, // Improves performance
+      })
+    ).start();
+  }, [spinValue]);
+
+  // Map 0-1 interpolation to degrees
+  const rotateInterpolate = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ["0deg", "360deg"],
+  });
 
   const genreOptions = [
     { value: "rock", label: "Rock" },
@@ -122,64 +111,96 @@ export default function WagerMultiPlayerForm() {
         </Text>
 
         {/* Dropdowns */}
-        <View style={styles.formSection}>
-          <Dropdown
-            title="Genre"
-            options={genreOptions}
-            value={selectedGenre}
-            onValueChange={setSelectedGenre}
-            placeholder="Select genre"
-          />
+        {loading === false ? (
+          <View style={styles.formSection}>
+            <Dropdown
+              title="Genre"
+              options={genreOptions}
+              value={selectedGenre}
+              onValueChange={setSelectedGenre}
+              placeholder="Select genre"
+            />
 
-          <Dropdown
-            title="Difficulty Level"
-            options={difficultyOptions}
-            value={selectedDifficulty}
-            onValueChange={setSelectedDifficulty}
-            placeholder="Select difficulty"
-          />
+            <Dropdown
+              title="Difficulty Level"
+              options={difficultyOptions}
+              value={selectedDifficulty}
+              onValueChange={setSelectedDifficulty}
+              placeholder="Select difficulty"
+            />
 
-          <Dropdown
-            title="Duration"
-            options={durationOptions}
-            value={selectedDuration}
-            onValueChange={setSelectedDuration}
-            placeholder="Select duration"
-          />
+            <Dropdown
+              title="Duration"
+              options={durationOptions}
+              value={selectedDuration}
+              onValueChange={setSelectedDuration}
+              placeholder="Select duration"
+            />
 
-          <Dropdown
-            title="Number of Players"
-            options={NumberOfPlayersOptions}
-            value={selectedNumberOfPlayer}
-            onValueChange={setSelectedNumberOfPlayer}
-            placeholder="Select Number Of Players"
-          />
+            <Dropdown
+              title="Number of Players"
+              options={NumberOfPlayersOptions}
+              value={selectedNumberOfPlayer}
+              onValueChange={setSelectedNumberOfPlayer}
+              placeholder="Select Number Of Players"
+            />
 
-          <Dropdown
-            title="Wager Amount"
-            options={wagerAmountOptions}
-            value={selectedWagerAmount}
-            onValueChange={setSelectedWagerAmount}
-            placeholder="Select Wager Amount"
-          />
-          <View>
-            <Text style={[styles.text, { paddingBottom: 50 }]}>
-              Wallet Balance:
-              <Text className="text-base font-medium text-[#9747FF]">
-                {" "}
-                18,678 STRK (5,678 USD){" "}
+            <Dropdown
+              title="Wager Amount"
+              options={wagerAmountOptions}
+              value={selectedWagerAmount}
+              onValueChange={setSelectedWagerAmount}
+              placeholder="Select Wager Amount"
+            />
+            <View>
+              <Text style={[styles.text, { paddingBottom: 50 }]}>
+                Wallet Balance:
+                <Text className="text-base font-medium text-[#9747FF]">
+                  {" "}
+                  18,678 STRK (5,678 USD){" "}
+                </Text>
               </Text>
-            </Text>
-          </View>
-        </View>
+            </View>
 
-        {/* Start Game Button */}
-        <Button title="Create Challenge" onPress={() => setWagerModal(true)} />
+            {/* Start Game Button */}
+            <Button
+              title="Create Challenge"
+              onPress={() => setWagerModal(true)}
+            />
+          </View>
+        ) : (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 100,
+            }}
+          >
+            <Animated.View
+              style={{ transform: [{ rotate: rotateInterpolate }] }}
+            >
+              <MaterialCommunityIcons
+                name="dots-circle"
+                size={60}
+                color={"#70E3C7"}
+              />
+            </Animated.View>
+            <Text className="my-3 text-xl font-medium">
+              Waiting for opponents...
+            </Text>
+            <Text className="text-sm">1 joined, 1 left</Text>
+          </View>
+        )}
 
         {/* Pop-up For Wager Created Modal*/}
         <WagerCreatedModal
           visible={wagerModal}
-          onPress={() => router.push("/screens/quickGame/QuickGameMode")}
+          onPress={() => {
+            setLoading(true);
+            router.push("/screens/quickGame/QuickGameMode");
+            // setLoading(false);
+          }}
           onClose={() => setWagerModal(false)}
           inviteCode="LF34567QW"
           gameMode="Wager (Multi Player)"
