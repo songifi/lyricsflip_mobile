@@ -1,5 +1,5 @@
 import GameModeCard from "@/app/components/game/GameModeCard";
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -21,6 +21,8 @@ import {
 } from "lucide-react-native";
 import { Colors } from "@/constants/Colors";
 import { RelativePathString, router } from "expo-router";
+import WagerCreatedModal from "@/components/WagerCreated";
+
 
 const gameModes = [
   {
@@ -62,7 +64,13 @@ const gameModes = [
   },
 ];
 
-// const path = '/screens/quickGameForm/QuickGameForm' as RelativePathString;
+  const wagerAmount = {
+    crypto: 10000,
+    fiat: 100,
+    currency: "STRK",
+    fiatCurrency: "USD",
+  };
+
 
 export default function index() {
   return (
@@ -80,6 +88,7 @@ export default function index() {
 
         <Text style={styles.sectionTitle}>CHOOSE YOUR PREFERRED GAME MODE</Text>
 
+
         {gameModes.map((mode, index) => (
           <ImageBackground
             key={index}
@@ -88,6 +97,13 @@ export default function index() {
           >
             <GameModeCard
               onPress={() => router.push(mode.route as RelativePathString)}
+              onPress={() => {
+                if (mode.title === "Wager (Multi Player)") {
+                  setWagerModal(true); // Show the modal for "Wager (Multi Player)"
+                } else {
+                  router.push(mode.route as RelativePathString); // Navigate for other game modes
+                }
+              }}
               icon={mode.icon}
               title={mode.title}
               description={mode.description}
@@ -96,15 +112,28 @@ export default function index() {
           </ImageBackground>
         ))}
       </ScrollView>
+
+      <WagerCreatedModal
+        onPress={() => setWagerModal(true)}
+        visible={wagerModal}
+        onClose={() => setWagerModal(false)}
+        inviteCode={wagerChallenge.inviteCode}
+        gameMode={wagerChallenge.gameMode}
+        participants={wagerChallenge.participants}
+        wagerAmount={wagerChallenge.wagerAmount}
+        winAmount={wagerChallenge.winAmount}
+        instruction={wagerChallenge.instruction}
+        // onStartGame={handleStartGame}
+      />
+
     </SafeAreaView>
   );
 }
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    marginBlock: 24,
   },
   scrollView: {
     flex: 1,
