@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 
-export default function JoinAchallenge() {
+export default function JoinAchallengeLayout() {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen

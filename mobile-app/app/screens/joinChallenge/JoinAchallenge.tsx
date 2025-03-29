@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   content: {
     // flexGrow: 1,
     padding: 18,
-    marginTop: 10,
+    marginTop: 30,
     backgroundColor: "#ffff",
   },
 

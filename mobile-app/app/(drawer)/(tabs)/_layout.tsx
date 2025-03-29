@@ -7,7 +7,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
-export default function _layout() {
+export default function Layout() {
   return (
     <Tabs screenOptions={{ headerShown: false }}>
       <Tabs.Screen
