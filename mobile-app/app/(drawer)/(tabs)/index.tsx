@@ -23,6 +23,7 @@ import { Colors } from "@/constants/Colors";
 import { RelativePathString, router } from "expo-router";
 import WagerCreatedModal from "@/components/WagerCreated";
 
+
 const gameModes = [
   {
     icon: <Zap size={18} color="white" />,
@@ -59,9 +60,17 @@ const gameModes = [
       "Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
     bgImage: require("@/assets/images/bg-3.png"),
     iconBgColor: "#7D1D3F",
-    route: "/screens/joinChallenge/JoinAchallenge",
+    route: "../../../screens/joinChallenge/JoinAchallenge",
   },
 ];
+
+  const wagerAmount = {
+    crypto: 10000,
+    fiat: 100,
+    currency: "STRK",
+    fiatCurrency: "USD",
+  };
+
 
 export default function index() {
   // const [isModalOpen, setIsModalOpen] = useState(true);
@@ -80,6 +89,7 @@ export default function index() {
 
         <Text style={styles.sectionTitle}>CHOOSE YOUR PREFERRED GAME MODE</Text>
 
+
         {gameModes.map((mode, index) => (
           <ImageBackground
             key={index}
@@ -87,14 +97,15 @@ export default function index() {
             style={styles.gameModeBackground}
           >
             <GameModeCard
-              // onPress={() => {
-              //   if (mode.title === "Wager (Multi Player)") {
-              //     setWagerModal(true); // Show the modal for "Wager (Multi Player)"
-              //   } else {
-              //     router.push(mode.route as RelativePathString); // Navigate for other game modes
-              //   }
-              // }}
               onPress={() => router.push(mode.route as RelativePathString)}
+            //   onPress={() => {
+            //     if (mode.title === "Wager (Multi Player)") {
+            //       setWagerModal(true); // Show the modal for "Wager (Multi Player)"
+            //     } else {
+            //       router.push(mode.route as RelativePathString); // Navigate for other game modes
+            //     }
+            //   }
+            // }
               icon={mode.icon}
               title={mode.title}
               description={mode.description}
@@ -103,6 +114,10 @@ export default function index() {
           </ImageBackground>
         ))}
       </ScrollView>
+
+
+
+
     </SafeAreaView>
   );
 }
