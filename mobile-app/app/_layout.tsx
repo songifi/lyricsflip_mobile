@@ -14,6 +14,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { darkTheme, lightTheme } from "@/theme/theme";
+import {Provider} from "react-redux";
+import {PersistGate} from "redux-persist/integration/react";
+import {persistor, store} from "@/redux/store";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -58,6 +61,8 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? darkTheme : lightTheme}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
       <Stack screenOptions={{ headerShown: false }}>
         {!hasSeenOnboarding ? (
           // Show onboarding for new users
@@ -74,6 +79,8 @@ export default function RootLayout() {
         )}
       </Stack>
       <StatusBar style="auto" />
+        </PersistGate>
+      </Provider>
     </ThemeProvider>
   );
 }
